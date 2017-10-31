@@ -10,8 +10,10 @@
     "puzzle": "./index.js"
   },
   "dependencies": {
+    "chalk": "^2.3.0",
     "co": "^4.6.0",
     "co-prompt": "^1.0.0",
-    "commander": "^2.11.0"
+    "commander": "^2.11.0",
+    "prompt": "^1.0.0"
   }
 }
