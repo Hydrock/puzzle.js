@@ -9,6 +9,9 @@
   "bin": {
     "puzzle": "./index.js"
   },
+  "scripts": {
+    "puzzle": "./index.js"
+  },
   "dependencies": {
     "chalk": "^2.3.0",
     "co": "^4.6.0",
