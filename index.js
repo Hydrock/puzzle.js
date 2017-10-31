@@ -1,4 +1,4 @@
-#!/usr/bin/env node --harmony
+#!/usr/bin/env node
 var chalk = require('chalk'); // color console
 let co = require('co');
 let prompt = require('prompt');

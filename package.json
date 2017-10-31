@@ -1,6 +1,6 @@
 {
   "name": "puzzle.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Library for html components",
   "main": "index.js",
   "repository": "git@github.com:Hydrock/puzzle.js.git",
