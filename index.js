@@ -7,9 +7,6 @@ const path = require('path');
 var fs   = require('fs');
 var lib  = path.join(path.dirname(fs.realpathSync(__filename)), '../lib');
 
-//
-var module = require('./modules/module.js');
-
 let pathStartProgramm = process.cwd();
 
 let projectConfig;
@@ -46,5 +43,3 @@ function writeConfig (dataObj) {
     console.log(chalk.green("The config was saved!"));
   }); 
 }
-
-console.log(module);
