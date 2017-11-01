@@ -6,6 +6,8 @@ let commander = require('commander');
 const path = require('path');
 var fs   = require('fs');
 var lib  = path.join(path.dirname(fs.realpathSync(__filename)), '../lib');
+var dirToJson = require('dir-to-json');
+var jsonFormat = require('json-format')
 
 let pathStartProgramm = process.cwd();
 
@@ -19,6 +21,16 @@ try {
   //return;
 }
 
+
+let dir;
+dirToJson( pathStartProgramm + '/components', function( err, dirTree ){
+  if( err ) {
+    throw err;
+  } else {
+    dir = dirTree;
+  }
+});
+
 function createConfig () {
   let config = {x: 11};
 
@@ -27,14 +39,14 @@ function createConfig () {
     console.log('Command-line input received:');
     console.log('  Project Name: ' + result.name);
 
-    config = {name: result.name}
-    config = JSON.stringify(config);
+    config = { name: result.name, components: dir }
+    config = jsonFormat(config);
     writeConfig(config)
   });
 }
 
 function writeConfig (dataObj) {
-  var json = JSON.stringify(dataObj);
+  var json = dataObj;
 
   fs.writeFile("./config.json", json, function(err) {
     if(err) {
@@ -43,3 +55,4 @@ function writeConfig (dataObj) {
     console.log(chalk.green("The config was saved!"));
   }); 
 }
+
