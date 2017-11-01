@@ -11,7 +11,8 @@
   },
   "scripts": {
     "puzzle": "./index.js",
-    "client": "webpack --config ./src/client/webpack.config.js"
+    "client": "webpack --config ./src/client/webpack.config.js",
+    "server": "node app/server/server.js"
   },
   "dependencies": {
     "chalk": "^2.3.0",

@@ -3,8 +3,14 @@ const fs = require('fs');
 
 const define = function(req, res, postData) {
 
+if (postData === 'action=test') {
+  res.writeHead(200, { 'Content-Type': 'text/plain','Trailer': 'Content-MD5' })
+  res.write('response from server!');
+  res.end();
+  return;
+}
+
 if(/\.js$/gi.test(req.url)) {
-  console.log('js');
   res.writeHead(200, {
     'Content-Type': 'application/javascript'
   });
