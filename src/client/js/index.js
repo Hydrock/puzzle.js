@@ -1,3 +1,9 @@
+//import * as test from './modules/test.js';
+
+import {test1} from './modules/test.js';
+//import {test2} from './modules/test.js';
+
+
 console.log('Script bundle connect!')
 
 setTimeout(() => {
@@ -14,3 +20,7 @@ setTimeout(() => {
 //$.post( "./", { name: "John", time: "2pm" } );
 
 console.log('End script!');
+
+//test.test1(96)
+test1(102)
+//test2(102)

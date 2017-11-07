@@ -1,7 +1,10 @@
 const url = require('url');
 const fs = require('fs');
+var ls = require('ls');
 
 const define = function(req, res, postData) {
+
+let prePath = __dirname;
 
 if (postData === 'action=test') {
   res.writeHead(200, { 'Content-Type': 'text/plain','Trailer': 'Content-MD5' })
@@ -14,16 +17,19 @@ if(/\.js$/gi.test(req.url)) {
   res.writeHead(200, {
     'Content-Type': 'application/javascript'
   });
-  let readStream = fs.createReadStream(prePath+'/../../client/js/app.bundle.js');
+  let readStream = fs.createReadStream('app/client/js/app.bundle.js');
   readStream.pipe(res);
   return;
 } else {
 
-    const urlParsed = url.parse(req.url, true);
-    let path = urlParsed.pathname;
-    prePath = __dirname;
+  // for (var file of ls('./*')) {
+  //   console.log(file.name)
+  // }
 
-    let filePath = prePath+'/../../client/index.html';
+    // const urlParsed = url.parse(req.url, true);
+    // let path = urlParsed.pathname;
+
+    let filePath = 'app/client/index.html';
 
 
     fs.readFile(filePath, 'utf-8', (err, html) => {

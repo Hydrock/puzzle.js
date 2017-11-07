@@ -11,7 +11,8 @@
   },
   "scripts": {
     "puzzle": "./index.js",
-    "client": "webpack --config ./src/client/webpack.config.js",
+    "client-build": "cross-env NODE_ENV=build-client webpack --config ./webpack.config.js",
+    "server-build": "cross-env NODE_ENV=build-server webpack --config ./webpack.config.js",
     "server": "node app/server/server.js"
   },
   "dependencies": {
@@ -22,10 +23,12 @@
     "dir-to-json": "^0.0.3",
     "http": "^0.0.0",
     "json-format": "^1.0.1",
+    "ls": "^0.2.1",
     "prompt": "^1.0.0",
     "url": "^0.11.0"
   },
   "devDependencies": {
+    "cross-env": "^5.1.1",
     "html-webpack-plugin": "^2.30.1",
     "webpack": "3.0.0"
   }
