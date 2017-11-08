@@ -17,7 +17,7 @@ const clientDistPath = path.join(__dirname, './app/client/js');
 
 const clientBuildConfig = {
   target: 'web',
-  watch: false,
+  watch: true,
   cache: true,
   devtool: '#cheap-module-eval-source-map',
   context: clientSrcPath,
