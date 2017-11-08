@@ -22,11 +22,28 @@ const clientBuildConfig = {
   devtool: '#cheap-module-eval-source-map',
   context: clientSrcPath,
   entry: {
-    app: './js/index.js',
+    app: './app/index.jsx',
   },
   output: {
     path: clientDistPath,
     filename: '[name].bundle.js',
+  },
+  module: {
+    loaders: [
+      {
+        test: /.js?x$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loader: require.resolve('url-loader'),
+        options: {
+          limit: 10000,
+          name: '../static/media/[name].[hash:8].[ext]',
+        },
+      }
+    ]
   },
   resolve: {
     modules: ["node_modules"],
@@ -34,7 +51,7 @@ const clientBuildConfig = {
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
-      title: 'My App',
+      title: 'PuzzleJS',
       filename: '../index.html',
       template: './html/index.html'
     })
