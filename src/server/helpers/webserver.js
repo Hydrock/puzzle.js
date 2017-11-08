@@ -1,18 +1,35 @@
 'use strict';
 const open    = require("open"),
       express = require('express'),
-      app     = express();
+      app     = express(),
+      bodyParser = require('body-parser');
+
+      const jsonfile = require('jsonfile');
+      const directories = require('./directories.js');
 
 function startWebserver() {
 
   app.use(express.static('app/client'));
+
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: true }))
   
   app.get('/', (req, res) => { 
     res.sendFile('index.html');
   });
 
   app.post('/', function (req, res) {
-    res.send('POST request to the homepage');
+    console.log(req.body.command);
+
+    if (req.body.command === 'getComponents') {
+      let components = jsonfile.readFileSync(directories.appRoot + '/app/tmp/tmp-components.json');
+      res.send({
+        components: components
+      });
+    } else {
+      res.send('nothing');
+    }
+
   });
   
   app.listen(3000, () => { 

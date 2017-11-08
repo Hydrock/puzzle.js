@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // materuia ui
 import Grid from 'material-ui/Grid';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
+
+//
+import axios from 'axios';
 
 const styles = {
   button: {
@@ -27,24 +30,105 @@ const styles = {
   },
   gridItemRight: {
     background: 'rgba(0,0,0,0.4)'
+  },
+  box: {
+    background: 'white',
+    border: '2px solid black'
+  },
+  box2: {
+    background: 'white',
+    border: '1px solid red'
   }
 };
 
 /*
-<Button className={props.classes.button}>
-      sdgsdgsdgfsdg
-    </Button>
+
 */
 
-const AppContainer = (props) => (
-  <Grid container className={props.classes.gridContainerRoot} spacing={0}>
-    <Grid item xs={2} className={props.classes.gridItemLeft}>
-      sdeafsdgf
-    </Grid>
-    <Grid item xs={10} className={props.classes.gridItemRight}>
-      sdeafsdgf
-    </Grid>
-  </Grid>
-)
+class AppContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      components: {}
+    }
+  } 
+
+  clickFunc = () => { 
+
+    axios({
+      method:'post',
+      url:'/',
+      data: {
+        command: 'getComponents',
+      }
+    })
+    .then(res => {
+      console.log(res)
+
+      this.setState({components: res.data.components})
+    });
+
+  }
+
+  renderComponents = () => {
+    if (this.state.components.name) {
+      return (
+        <div className={this.props.classes.box}>
+          {this.state.components.name}
+          {this.renderChildrens(this.state.components.children)}
+        </div>
+      )
+    } else {
+      return (
+        <div className={this.props.classes.box}>nothing</div>
+      )
+    }
+  }
+
+  renderChildrens = (children) => {
+    if (children && children.length > 0) {
+      return children.map((item, id) => {
+        if (item.children && item.children.length > 0) {
+          console.log(item.children)
+          return (
+              <div key={id} className={this.props.classes.box2}>
+                <div>{item.name}</div>
+                <div>{this.renderChildrens(item.children)}</div>
+              </div>
+          )
+        } else {
+          console.log(item.children)
+          return (
+            <div key={id} className={this.props.classes.box2}>
+              {item.name}
+            </div>
+          )
+        }
+      })
+    }
+  }
+  
+  render () {
+    return (
+      <Grid container className={this.props.classes.gridContainerRoot} spacing={0}>
+        <Grid item xs={2} className={this.props.classes.gridItemLeft}>
+          sdeafsdgf
+        </Grid>
+        <Grid item xs={10} className={this.props.classes.gridItemRight}>
+          <Button
+            className={this.props.classes.button}
+            onClick={this.clickFunc}
+          >
+            <div>
+              sdfsdfsdg
+            </div>
+          </Button>
+          {this.renderComponents()}
+        </Grid>
+      </Grid> 
+    )
+  }
+  
+}
 
 export default withStyles(styles)(AppContainer);
