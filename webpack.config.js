@@ -16,6 +16,7 @@ const clientSrcPath = path.join(__dirname, './src/client');
 const clientDistPath = path.join(__dirname, './app/client/js');
 
 const clientBuildConfig = {
+  target: 'web',
   watch: false,
   cache: true,
   devtool: '#cheap-module-eval-source-map',
@@ -46,11 +47,11 @@ const serverSrcPath = path.join(__dirname, './src/server');
 const serverDistPath = path.join(__dirname, './app/server');
 
 const serverBuildConfig = {
+  target: 'node',
   watch: false,
   cache: true,
   devtool: '#cheap-module-eval-source-map',
   context: serverSrcPath,
-  target: 'node',
   entry: {
     app: './server.js',
   },

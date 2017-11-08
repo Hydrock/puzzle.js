@@ -1,18 +1,15 @@
-const http = require('http');
-const routing = require('./routing');
+'use strict';
+const open    = require("open");
+const express = require('express');
+const app     = express();
 
-let server = new http.Server(function(req, res) {
-  // API сервера будет принимать только POST-запросы и только JSON, так что записываем
-  // всю нашу полученную информацию в переменную jsonString
-  var jsonString = '';
-  res.setHeader('Content-Type', 'application/json');
-  req.on('data', (data) => { // Пришла информация - записали.
-      jsonString += data;
-  });
+app.use(express.static('app/client'));
 
-  req.on('end', () => {// Информации больше нет - передаём её дальше.
-      routing.define(req, res, jsonString); // Функцию define мы ещё не создали.
-  });
+app.get('/', (req, res) => { 
+  res.sendFile('index.html');
 });
 
-server.listen(8000, 'localhost');
+app.listen(3000, () => { 
+  console.log('PuzzleJS app listening on port 3000! - http://localhost:3000');
+  open("localhost:3000/", "chrome");
+});
