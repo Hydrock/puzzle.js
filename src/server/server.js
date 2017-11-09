@@ -13,17 +13,20 @@ const saveTmpFiles = require('./helpers/saveTmpFiles.js');
 
 /* ------------ */
 
-(async function () {
+// get project config json
+const projectConfig = getConfig();
 
-  // get project config json
-  const projectConfig = await getConfig();
-  // get components json
-  let componentsJson = await getComponents;
+// get components json
+let componentsJson;
+getComponents.then(data => {
+  componentsJson = data;
+})
 
-  await saveTmpFiles(projectConfig, componentsJson);
+setTimeout(() => {
+  saveTmpFiles(projectConfig, componentsJson);
+}, 1000)
 
-  await webserver();
 
-  console.log(1)
-
-})();
+setTimeout(() => {
+  webserver();
+}, 2000);
