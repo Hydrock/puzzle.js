@@ -8,6 +8,16 @@ import Button from 'material-ui/Button';
 //
 import axios from 'axios';
 
+//
+import { Provider } from 'react-redux'
+import store from '../../store.js'
+
+//actions
+
+import { getComponents } from '../../actions';
+
+import ComponentsList from '../../containers/list/index.jsx';
+
 const styles = {
   button: {
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -46,12 +56,6 @@ const styles = {
 */
 
 class AppContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      components: {}
-    }
-  } 
 
   clickFunc = () => { 
 
@@ -65,7 +69,9 @@ class AppContainer extends Component {
     .then(res => {
       console.log(res)
 
-      this.setState({components: res.data.components})
+      //this.setState({components: res.data.components})
+
+      getComponents(res.data.components)
     });
 
   }
@@ -109,22 +115,24 @@ class AppContainer extends Component {
   
   render () {
     return (
-      <Grid container className={this.props.classes.gridContainerRoot} spacing={0}>
-        <Grid item xs={2} className={this.props.classes.gridItemLeft}>
-          sdeafsdgf
+      <Provider store={store}>
+        <Grid container className={this.props.classes.gridContainerRoot} spacing={0}>
+          <Grid item xs={2} className={this.props.classes.gridItemLeft}>
+            <ComponentsList/>
+          </Grid>
+          <Grid item xs={10} className={this.props.classes.gridItemRight}>
+            <Button
+              className={this.props.classes.button}
+              onClick={this.clickFunc}
+            >
+              <div>
+                sdfsdfsdg
+              </div>
+            </Button>
+            { /* {this.renderComponents()} */ }
+          </Grid>
         </Grid>
-        <Grid item xs={10} className={this.props.classes.gridItemRight}>
-          <Button
-            className={this.props.classes.button}
-            onClick={this.clickFunc}
-          >
-            <div>
-              sdfsdfsdg
-            </div>
-          </Button>
-          { /* {this.renderComponents()} */ }
-        </Grid>
-      </Grid> 
+      </Provider>
     )
   }
   

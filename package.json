@@ -30,11 +30,14 @@
     "jsonfile": "^4.0.0",
     "ls": "^0.2.1",
     "material-ui": "^1.0.0-beta.20",
+    "material-ui-icons": "^1.0.0-beta.17",
     "open": "^0.0.5",
     "prompt": "^1.0.0",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
     "url": "^0.11.0"
   },
   "devDependencies": {
