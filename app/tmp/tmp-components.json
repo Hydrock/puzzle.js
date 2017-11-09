@@ -1,26 +1,21 @@
 {
-	"parent": "..",
-	"path": "",
 	"name": "components",
 	"type": "directory",
 	"children": [
 		{
-			"parent": "",
-			"path": "button",
 			"name": "button",
+			"path": "button",
+			"type": "component"
+		},
+		{
+			"name": "test",
 			"type": "directory",
+			"path": "test",
 			"children": [
 				{
-					"parent": "button",
-					"path": "button/component.json",
-					"name": "component.json",
-					"type": "file"
-				},
-				{
-					"parent": "button",
-					"path": "button/index.html",
-					"name": "index.html",
-					"type": "file"
+					"name": "test",
+					"path": "test/test",
+					"type": "component"
 				}
 			]
 		}

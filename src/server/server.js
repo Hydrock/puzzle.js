@@ -8,6 +8,10 @@ const getConfig = require('./helpers/get-config.js');
 const getComponents = require('./helpers/get-components.js');
 // save tmp congigs
 const saveTmpFiles = require('./helpers/saveTmpFiles.js');
+
+// formatComponents.js
+const formatComponents = require('./helpers/formatComponents.js');
+
 // app webserver
 const webserver = require('./helpers/webserver.js');
 
@@ -21,8 +25,11 @@ const webserver = require('./helpers/webserver.js');
   // get components json
   const components = await getComponents();
 
+  // format components data for client
+  const formattedComponents = formatComponents(components);
+
   // save temp configs
-  await saveTmpFiles(projectConfig, components);
+  await saveTmpFiles(projectConfig, formattedComponents);
 
   webserver();
 
