@@ -97,7 +97,6 @@ class AppContainer extends Component {
               </div>
           )
         } else {
-          console.log(item.children)
           return (
             <div key={id} className={this.props.classes.box2}>
               {item.name}
