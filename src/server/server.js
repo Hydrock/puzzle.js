@@ -2,31 +2,28 @@
 
 // directories
 const directories = require('./helpers/directories.js');
-// app webserver
-const webserver = require('./helpers/webserver.js');
 // get config
 const getConfig = require('./helpers/get-config.js');
 // get components
 const getComponents = require('./helpers/get-components.js');
 // save tmp congigs
 const saveTmpFiles = require('./helpers/saveTmpFiles.js');
+// app webserver
+const webserver = require('./helpers/webserver.js');
 
 /* ------------ */
 
-// get project config json
-const projectConfig = getConfig();
+(async () => {
 
-// get components json
-let componentsJson;
-getComponents.then(data => {
-  componentsJson = data;
-})
+  // get project config json
+  const projectConfig = await getConfig();
 
-setTimeout(() => {
-  saveTmpFiles(projectConfig, componentsJson);
-}, 1000)
+  // get components json
+  const components = await getComponents();
 
+  // save temp configs
+  await saveTmpFiles(projectConfig, components);
 
-setTimeout(() => {
   webserver();
-}, 2000);
+
+})()

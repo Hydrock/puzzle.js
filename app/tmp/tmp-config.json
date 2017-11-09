@@ -1,31 +1,3 @@
 {
-	"name": "sdghsdhsdh",
-	"components": {
-		"parent": "..",
-		"path": "",
-		"name": "components",
-		"type": "directory",
-		"children": [
-			{
-				"parent": "",
-				"path": "button",
-				"name": "button",
-				"type": "directory",
-				"children": [
-					{
-						"parent": "button",
-						"path": "button/component.json",
-						"name": "component.json",
-						"type": "file"
-					},
-					{
-						"parent": "button",
-						"path": "button/index.html",
-						"name": "index.html",
-						"type": "file"
-					}
-				]
-			}
-		]
-	}
+	"name": "sdghsdhsdh"
 }
