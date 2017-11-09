@@ -7,4 +7,10 @@ const dirToJson = require('dir-to-json');
 const componentsFolderName = '/components';
 const pathToFolder = directories.projectFolder + componentsFolderName;
 
-module.exports = dirToJson(pathToFolder);
+module.exports = dirToJson(pathToFolder, function( err, dirTree ) {
+  if( err ){
+      throw err;
+  } else {
+      return dirTree;
+  } 
+});
