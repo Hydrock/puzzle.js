@@ -18,6 +18,12 @@ function startWebserver() {
     res.sendFile('index.html');
   });
 
+  app.get(/.*components*/, (req, res) => {
+    console.log(req.url)
+    res.sendFile(directories.projectFolder + req.url);
+    //res.sendFile(directories.projectFolder + '/components/test/test/index.html');
+  });
+
   app.post('/', function (req, res) {
     console.log(req.body.command);
 
@@ -26,6 +32,11 @@ function startWebserver() {
       res.send({
         components: components
       });
+    } else if (req.body.command === 'loadComponentHtml') {
+      //let htmlSrc = directories.projectFolder + '/componennts/' + req.body.path +  '/index.html';
+      let htmlSrc = 'components/' + req.body.path +  '/index.html';
+      res.send(htmlSrc);
+
     } else {
       res.send('nothing');
     }

@@ -11,15 +11,25 @@ import ExpandMore from 'material-ui-icons/ExpandMore';
 import StarBorder from 'material-ui-icons/StarBorder';
 import FolderIcon from 'material-ui-icons/Folder';
 
+import axios from 'axios';
+
+import { renderComponent } from '../../actions';
+
 const styles = theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
     background: theme.palette.background.paper,
+    '&:hover': {
+      background: theme.palette.background.paper,
+    }
   },
   item: {
     paddingLeft: theme.spacing.unit * 4,
-    backgroundColor: 'gray'
+    backgroundColor: 'gray',
+    '&:hover': {
+      background: 'gray',
+    }
   },
   nested: {
     paddingLeft: theme.spacing.unit * 4,
@@ -73,13 +83,30 @@ class ComponentsList extends Component {
           )
         } else {
           return (
-            <ListItem button className={classes.item} key={id}>
+            <ListItem button className={classes.item} key={id} onClick={() => this.onComponentClick(item.path) }>
               <ListItemText inset primary={item.name} />
             </ListItem>
           )
         }
       })
     }
+  }
+
+  onComponentClick = (path) => {
+    console.log(path)
+
+    axios({
+      method:'post',
+      url:'/',
+      data: {
+        command: 'loadComponentHtml',
+        path: path
+      }
+    })
+    .then(res => {
+      renderComponent({path: res.data})
+      console.log(res)
+    })
   }
 
   render () {

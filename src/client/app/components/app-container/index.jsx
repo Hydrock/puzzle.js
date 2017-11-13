@@ -18,6 +18,8 @@ import { getComponents } from '../../actions';
 
 import ComponentsList from '../../containers/list/index.jsx';
 
+import ComponentView from '../../containers/component-view/index.jsx';
+
 const styles = {
   button: {
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -129,6 +131,7 @@ class AppContainer extends Component {
                 sdfsdfsdg
               </div>
             </Button>
+            <ComponentView/>
             { /* {this.renderComponents()} */ }
           </Grid>
         </Grid>

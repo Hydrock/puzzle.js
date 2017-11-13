@@ -6,3 +6,10 @@ export function getComponents(obj) {
     payload: obj
   })
 }
+
+export function renderComponent(obj) {
+  store.dispatch({
+    type: 'render-component',
+    payload: obj
+  })
+}
