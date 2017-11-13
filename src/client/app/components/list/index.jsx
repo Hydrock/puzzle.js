@@ -13,7 +13,7 @@ import FolderIcon from 'material-ui-icons/Folder';
 
 import axios from 'axios';
 
-import { renderComponent } from '../../actions';
+import { getComponents, renderComponent } from '../../actions';
 
 const styles = theme => ({
   root: {
@@ -37,6 +37,19 @@ const styles = theme => ({
 });
 
 class ComponentsList extends Component {
+
+  componentWillMount () {
+    axios({
+      method:'post',
+      url:'/',
+      data: {
+        command: 'getComponents',
+      }
+    })
+    .then(res => {
+      getComponents(res.data.components)
+    });
+  }
 
   renderComponents = () => {
     const { classes } = this.props;
