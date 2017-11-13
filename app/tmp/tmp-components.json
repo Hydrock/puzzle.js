@@ -8,13 +8,13 @@
 			"type": "component"
 		},
 		{
-			"name": "test",
+			"name": "fields",
 			"type": "directory",
-			"path": "test",
+			"path": "fields",
 			"children": [
 				{
-					"name": "test",
-					"path": "test/test",
+					"name": "input",
+					"path": "fields/input",
 					"type": "component"
 				}
 			]
